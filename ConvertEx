@@ -1,0 +1,51 @@
+using System;
+using UnityEngine;
+
+public class ConvertEx
+{
+    /// <summary>
+    /// 数値を列挙値に変換する
+    /// </summary>
+    /// <typeparam name="T">列挙値のテンプレート</typeparam>
+    /// <param name="_text">数値</param>
+    /// <returns>列挙値</returns>
+    public static T ToEnum<T>(int _text) where T : new()
+    {
+        T val = new T();
+
+        try
+        {
+            val = (T)Enum.ToObject(typeof(T), _text);
+            return (val);
+        }
+        catch (Exception err)
+        {
+            Debug.LogError(err.Message);
+        }
+
+        return (val);
+    }
+
+    /// <summary>
+    /// 文字列を列挙値に変換する
+    /// </summary>
+    /// <typeparam name="T">列挙値のテンプレート</typeparam>
+    /// <param name="_text">文字列</param>
+    /// <returns>列挙値</returns>
+    public static T ToEnum<T>(string _text) where T : new()
+    {
+        T val = new T();
+
+        try
+        {
+            val = (T)Enum.Parse(typeof(T), _text);
+            return (val);
+        }
+        catch (Exception err)
+        {
+            Debug.LogError(err.Message);
+        }
+
+        return (val);
+    }
+}
